@@ -120,8 +120,8 @@ By default, Places results 10 places, unless otherwise specified. If you want a 
 | `text` | YMCA |
 | `size` | 1 |
 
-> [/v1/search?__size=1__](/v1/search%3Ftext=YMCA&size=1)
+> /v1/search?__size=1__
 
 If you want 25 results, you can build the query where `size` is 25.
 
-> [/v1/search?__size=25__](/v1/search%3Ftext=YMCA&size=25)
+> /v1/search?__size=25__

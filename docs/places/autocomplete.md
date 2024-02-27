@@ -59,11 +59,11 @@ By default, Places results up to 10 places, unless otherwise specified. If you w
 | `text` | YMCA |
 | `size` | 1 |
 
-> [/v1/autocomplete?text=YMCA&__size=1__](/v1/autocomplete%3Fsize=1&text=ymca)
+> /v1/autocomplete?text=YMCA&__size=1__
 
 If you want 25 results, you can build the query where `size` is 25.
 
-> [/v1/autocomplete?text=YMCA&__size=25__](/v1/autocomplete%3Fsize=25&text=ymca)
+> /v1/autocomplete?text=YMCA&__size=25__
 
 ## Global scope, local focus
 
@@ -179,7 +179,7 @@ Sometimes you don't have a rectangle to work with, but rather you have a point o
 
 In this example, you want to find all YMCA locations within a 35-kilometer radius of a location in Ontario, Canada. This time, you can use the `boundary.circle.*` parameter group, where `boundary.circle.lat` and `boundary.circle.lon` is your location in Ontario and `boundary.circle.radius` is the acceptable distance from that location. Note that the `boundary.circle.radius` parameter is always specified in kilometers.
 
-> [/v1/autocomplete?text=YMCA&__boundary.circle.lon=-79.186484&boundary.circle.lat=43.818156&boundary.circle.radius=35__](/v1/autocomplete%3Fboundary.circle.lon=-79.186484&boundary.circle.lat=43.818156&boundary.circle.radius=35&text=ymca)
+> /v1/autocomplete?text=YMCA&__boundary.circle.lon=-79.186484&boundary.circle.lat=43.818156&boundary.circle.radius=35__
 
 | parameter | value |
 | :--- | :--- |

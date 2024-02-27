@@ -5,7 +5,7 @@ Each result returned from Places contains several different properties to help y
 
 ### match\_type
 
-This field is present on queries to the [search](search.md) and [structured search](structured-geocoding.md) endpoints only.
+This field is present on queries to the [search](search.md) endpoint only.
 
 There are three possible values: `exact`, `interpolated`, and `fallback`.
 
@@ -17,9 +17,9 @@ If Places wasn't able to return exactly what it thinks you asked for, it will tr
 
 #### Some examples:
 
-A query for [1600 Pennsylvania Avenue, Seattle, Washington](/v1/search%3Ftext=1600%20Pennsylvania%20Avenue,%20Seattle,%20WA) returns the city of Seattle, since there is no Pennsylvania Avenue in Seattle. In previous versions of Places, this query would return 1600 Pennsylvania Avenue addresses in other parts of the world (such as the famous White House address in Washington, D.C.).
+A query for `1600 Pennsylvania Avenue, Seattle, Washington` returns the city of Seattle, since there is no Pennsylvania Avenue in Seattle. In previous versions of Places, this query would return 1600 Pennsylvania Avenue addresses in other parts of the world (such as the famous White House address in Washington, D.C.).
 
-A query for [France](/v1/search%3Ftext=France) will return one result, with `match_type` `exact`. However, a query for the non-existent city of [Berlin, France](/v1/search%3Ftext=France) will also return France, but in this case with a match type of `fallback`. Places knows you were looking for something in the country of France called Berlin. It couldn't find it, so instead of returning one of the many [other Berlins](/v1/search%3Ftext=berlin), it returns France. This demonstrates that the `match_type` value depends on the query _and_ the result.
+A query for `France` will return one result, with `match_type` `exact`. However, a query for the non-existent city of `Berlin, France` will also return France, but in this case with a match type of `fallback`. Places knows you were looking for something in the country of France called Berlin. It couldn't find it, so instead of returning one of the many `other Berlins`, it returns France. This demonstrates that the `match_type` value depends on the query _and_ the result.
 
 ### confidence
 This is a general score computed to calculate how likely result is what was asked for. It's meant to be a combination of all the information available to Places.

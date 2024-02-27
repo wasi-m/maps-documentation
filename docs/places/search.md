@@ -23,7 +23,7 @@ In the simplest search, you can provide only one parameter, the text you want to
 
 For example, if you want to find a [YMCA](https://en.wikipedia.org/wiki/YMCA) facility, here's what you'd need to append to the base URL of the service.
 
-> [/v1/search?__text=YMCA__](/v1/search%3Ftext=YMCA)
+> /v1/search?__text=YMCA__
 
 Note the parameter values are set as follows:
 
@@ -50,7 +50,7 @@ In the example above, you will find the name of each matched locations in a prop
 
 Spelling matters, but not capitalization when performing a query with Places. You can type `ymca`, `YMCA`, or even `yMcA`. See for yourself by comparing the results of the earlier search to the following:
 
-> [/v1/search?__text=yMcA__](/v1/search%3Ftext=yMcA)
+> /v1/search?__text=yMcA__
 
 Note that the results are spread out throughout the world because you have not given your current location or provided any other geographic context in which to search.
 
@@ -63,11 +63,11 @@ By default, Places returns up to 10 results. If you want a different number, set
 | `text` | YMCA |
 | `size` | 1 |
 
-> [/v1/search?text=YMCA&__size=1__](/v1/search%3Fsize=1&text=ymca)
+> /v1/search?text=YMCA&__size=1__
 
 If you want 25 results, you can build the query where `size` is 25.
 
-> [/v1/search?text=YMCA&__size=25__](/v1/search%3Fsize=25&text=ymca)
+> /v1/search?text=YMCA&__size=25__
 
 ## Narrow your search
 
@@ -81,7 +81,7 @@ Sometimes your work might require that all the search results be from a particul
 
 Now, you want to search for YMCA again, but this time only in Great Britain. To do this, you will need to know that the alpha-3 code for Great Britain is GBR and set the parameters like this:
 
-> [/v1/search?text=YMCA&__boundary.country=GBR__](/v1/search%3Fboundary.country=GBR&text=ymca)
+> /v1/search?text=YMCA&__boundary.country=GBR__
 
 | parameter | value |
 | :--- | :--- |
@@ -103,7 +103,7 @@ Note that all the results are within Great Britain:
 
 If you try the same search request with different country codes, the results change to show YMCA locations within this region.
 
-> [/v1/search?text=YMCA&__boundary.country=USA__](/v1/search%3Fboundary.country=USA&text=ymca)
+> /v1/search?text=YMCA&__boundary.country=USA__
 
 Results in the United States:
 
@@ -128,7 +128,7 @@ For example, to find a YMCA within the state of Texas, you can set the `boundary
 
 Tip: You can look up a bounding box for a known region with this [web tool](http://boundingbox.klokantech.com/).
 
-> [/v1/search?text=YMCA&__boundary.rect.min_lat=25.84&boundary.rect.min_lon=-106.65&boundary.rect.max_lat=36.5&boundary.rect.max_lon=-93.51__](/v1/search%3Fboundary.rect.min_lat=25.84&boundary.rect.min_lon=-106.65&boundary.rect.max_lat=36.5&boundary.rect.max_lon=-93.51&text=ymca)
+> /v1/search?text=YMCA&__boundary.rect.min_lat=25.84&boundary.rect.min_lon=-106.65&boundary.rect.max_lat=36.5&boundary.rect.max_lon=-93.51__
 
 | parameter | value |
 | :--- | :--- |
@@ -157,7 +157,7 @@ Sometimes you don't have a rectangle to work with, but rather you have a point o
 
 In this example, you want to find all YMCA locations within a 35-kilometer radius of a location in Ontario, Canada. This time, you can use the `boundary.circle.*` parameter group, where `boundary.circle.lat` and `boundary.circle.lon` is your location in Ontario and `boundary.circle.radius` is the acceptable distance from that location. Note that the `boundary.circle.radius` parameter is always specified in kilometers.
 
-> [/v1/search?text=YMCA&__boundary.circle.lon=-79.186484&boundary.circle.lat=43.818156&boundary.circle.radius=35__](/v1/search%3Fboundary.circle.lon=-79.186484&boundary.circle.lat=43.818156&boundary.circle.radius=35&text=ymca)
+> /v1/search?text=YMCA&__boundary.circle.lon=-79.186484&boundary.circle.lat=43.818156&boundary.circle.radius=35__
 
 | parameter | value |
 | :--- | :--- |
@@ -183,7 +183,7 @@ For example, finding YMCAs in [Oklahoma](https://en.wikipedia.org/wiki/Oklahoma)
 
 With `boundary.gid`, this query can return accurate results.
 
-> [/v1/search?text=YMCA&__boundary.gid=whosonfirst:region:85688585__](/v1/search%3Fboundary.gid=whosonfirst:region:85688585&text=ymca)
+> /v1/search?text=YMCA&__boundary.gid=whosonfirst:region:85688585__
 
 * YMCA, Stillwater, OK, USA
 * YMCA, Edmond, OK, USA
@@ -196,7 +196,7 @@ With `boundary.gid`, this query can return accurate results.
 * YMCA, The Village, OK, USA
 * YMCA, Broken Arrow, OK, USA
 
-In the query above, `whosonfirst:region:85688585`, is the Places `gid` for Oklahoma, USA. Currently, all parent records come from the [Who's on First](https://whosonfirst.org/) project. `gid`s for records can be found using either the [Who's on First Spelunker](http://spelunker.whosonfirst.org/), a tool for searching Who's on First data, or from the responses of other Places queries. In this case a [search for Oklahoma](/v1/search%3Ftext=oklahoma) will return the proper `gid`.
+In the query above, `whosonfirst:region:85688585`, is the Places `gid` for Oklahoma, USA. Currently, all parent records come from the [Who's on First](https://whosonfirst.org/) project. `gid`s for records can be found using either the [Who's on First Spelunker](http://spelunker.whosonfirst.org/), a tool for searching Who's on First data, or from the responses of other Places queries. In this case a `/v1/search%3Ftext=oklahoma` will return the proper `gid`.
 
 ### Specify multiple boundaries
 
@@ -211,11 +211,11 @@ Many use cases call for the ability to promote nearby results to the top of the 
 
 ![Searching around a point](./img/focus_point.png)
 
-By specifying a `focus.point`, results will be sorted in part by their proximity to the given coordinate. All else being equal, results closest to the point will show up higher. However, unlike a `boundary.circle` query, important results far from the given coordinate may still be returned. This allows, for example, [a query for places called Paris with a `focus.point` value in Texas to return both Paris, TX and Paris, France](/v1/autocomplete%3Ffocus.point.lat=33.7568&focus.point.lon=-95.5362&layers=locality&sources=wof&text=paris).
+By specifying a `focus.point`, results will be sorted in part by their proximity to the given coordinate. All else being equal, results closest to the point will show up higher. However, unlike a `boundary.circle` query, important results far from the given coordinate may still be returned. This allows, for example, a query for places called Paris with a `focus.point` value in Texas to return both Paris, TX and Paris, France `/v1/autocomplete%3Ffocus.point.lat=33.7568&focus.point.lon=-95.5362&layers=locality&sources=wof&text=paris`.
 
 To find YMCAs again, but this time near a specific coordinate location (representing the Sydney Opera House) in Sydney, Australia, use `focus.point`.
 
-> [/v1/search?text=YMCA&__focus.point.lat=-33.856680&focus.point.lon=151.215281__](/v1/search%3Ffocus.point.lat=-33.856680&focus.point.lon=151.215281&text=ymca)
+> /v1/search?text=YMCA&__focus.point.lat=-33.856680&focus.point.lon=151.215281__
 
 | parameter | value |
 | :--- | :--- |
@@ -244,7 +244,7 @@ Now that you have seen how to use boundary and focus to narrow and sort your res
 
 Going back to the YMCA search you conducted with a focus around a point in Sydney, the results came back from distant parts of the world, as expected. But say you wanted to only see results from the country in which your focus point lies. You can combine that same focus point in Sydney with the country boundary of Australia like this.
 
-> [/v1/search?text=YMCA&__focus.point.lat=-33.856680&focus.point.lon=151.215281__](/v1/search%3Ffocus.point.lat=-33.856680&focus.point.lon=151.215281&text=ymca)
+> /v1/search?text=YMCA&__focus.point.lat=-33.856680&focus.point.lon=151.215281__
 
 | parameter | value |
 | :--- | :--- |
@@ -270,7 +270,7 @@ The results below look different from the ones you saw before with only a focus 
 
 If you are looking for the nearest YMCA locations, and are willing to travel no farther than 50 kilometers from your current location, you likely would want the results to be sorted by distance from current location to make your selection process easier. You can get this behavior by using `focus.point` in combination with `boundary.circle.*`. You can use the `focus.point.*` values as the `boundary.circle.lat` and `boundary.circle.lon`, and add the required `boundary.circle.radius` value in kilometers.
 
-> [/v1/search?text=YMCA&focus.point.lat=-33.856680&focus.point.lon=151.215281&__boundary.circle.lat=-33.856680&boundary.circle.lon=151.215281&boundary.circle.radius=50__](/v1/search%3Ffocus.point.lat=-33.856680&focus.point.lon=151.215281&boundary.circle.lat=-33.856680&boundary.circle.lon=151.215281&boundary.circle.radius=50&text=ymca)
+> /v1/search?text=YMCA&focus.point.lat=-33.856680&focus.point.lon=151.215281&__boundary.circle.lat=-33.856680&boundary.circle.lon=151.215281&boundary.circle.radius=50__
 
 | parameter | value |
 | :--- | :--- |
@@ -311,7 +311,7 @@ The search examples so far have returned a mix of results from all the data sour
 
 If you use the `sources` parameter, you can choose which of these data sources to include in your search. So if you're only interested in finding a YMCA in data from OpenAddresses, for example, you can build a query specifying that data source.
 
-> [/v1/search?text=YMCA&__sources=oa__](/v1/search%3Fsources=oa&text=ymca)
+> /v1/search?text=YMCA&__sources=oa__
 
 | parameter | value |
 | :--- | :--- |
@@ -333,7 +333,7 @@ Because OpenAddresses is, as the name suggests, only address data, here's what y
 
 If you wanted to combine several data sources together, set `sources` to a comma separated list of desired source names. Note that the order of the comma separated values does not impact sorting order of the results; they are still sorted based on the linguistic match quality to `text` and distance from `focus`, if you specified one.
 
-> [/v1/search?text=YMCA&__sources=osm,gn__](/v1/search%3Fsources=osm,gn&text=ymca)
+> /v1/search?text=YMCA&__sources=osm,gn__
 
 | parameter | value |
 | :--- | :--- |
@@ -366,7 +366,7 @@ Here's a list of the types of places you could find in the results, sorted by gr
 |`coarse`|alias for simultaneously using all administrative layers (everything except `venue` and `address`)|
 |`postalcode`|postal code used by mail services|
 
-> [/v1/search?text=YMCA&__layers=venue,address__](/v1/search%3Flayers=venue,address&text=ymca)
+> /v1/search?text=YMCA&__layers=venue,address__
 
 | parameter | value |
 | :--- | :--- |
