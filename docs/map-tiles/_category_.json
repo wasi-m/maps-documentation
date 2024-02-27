@@ -1,0 +1,8 @@
+{
+  "label": "Map Tiles",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "map tiles"
+  }
+}
