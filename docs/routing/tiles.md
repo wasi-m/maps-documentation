@@ -7,7 +7,7 @@ sidebar_position: 6
 Tiles are split up into three levels or hierarchies.  Hierarchy 0 contains edges pertaining to roads that are considered highway (motorway, trunk, and primary) roads and are stored in 4 degree tiles.  Hierarchy 1 contains roads that are at a arterial level (secondary and tertiary) and are saved in 1 degree tiles.  Finally, Hierarchy 2 contains roads that are considered at a local level (unclassified, residential, and service or other).  These tiles are saved in .25 degree tiles.
 
 So in python, the levels are defined as:<br/>
-`valhalla_tiles = [{'level': 2, 'size': 0.25}, {'level': 1, 'size': 1.0}, {'level': 0, 'size': 4.0}]`
+`directions_api_tiles = [{'level': 2, 'size': 0.25}, {'level': 1, 'size': 1.0}, {'level': 0, 'size': 4.0}]`
 
 ### The World at Level 0
 
@@ -35,7 +35,7 @@ Below are some sample functions to help you obtain latitude and longitude coordi
 ```bash
 #!/usr/bin/env python
 
-valhalla_tiles = [{'level': 2, 'size': 0.25}, {'level': 1, 'size': 1.0}, {'level': 0, 'size': 4.0}]
+directions_api_tiles = [{'level': 2, 'size': 0.25}, {'level': 1, 'size': 1.0}, {'level': 0, 'size': 4.0}]
 LEVEL_BITS = 3
 TILE_INDEX_BITS = 22
 ID_INDEX_BITS = 21
@@ -66,7 +66,7 @@ def tiles_for_bounding_box(left, bottom, right, top):
   top += 90
   tiles = []
   #for each size of tile
-  for tile_set in valhalla_tiles:
+  for tile_set in directions_api_tiles:
     #for each column
     for x in range(int(left/tile_set['size']), int(right/tile_set['size']) + 1):
       #for each row
@@ -76,21 +76,21 @@ def tiles_for_bounding_box(left, bottom, right, top):
   return tiles
 
 def get_tile_id(tile_level, lat, lon):
-  level = list(filter(lambda x: x['level'] == tile_level, valhalla_tiles))[0]
+  level = list(filter(lambda x: x['level'] == tile_level, directions_api_tiles))[0]
   width = int(360 / level['size'])
   return int((lat + 90) / level['size']) * width + int((lon + 180 ) / level['size'])
 
 def get_ll(id):
   tile_level = get_tile_level(id)
   tile_index = get_tile_index(id)
-  level = list(filter(lambda x: x['level'] == tile_level, valhalla_tiles))[0]
+  level = list(filter(lambda x: x['level'] == tile_level, directions_api_tiles))[0]
   width = int(360 / level['size'])
   height = int(180 / level['size'])
   return int(tile_index / width) * level['size'] - 90, (tile_index % width) * level['size'] - 180
 
 ```
 ## Get the Level or Hierarchy
-`get_tile_level(73160266)` returns a level of 2.  73160266 is a Valhalla Graphid.<br/>
+`get_tile_level(73160266)` returns a level of 2.  73160266 is a Directions API Graphid.<br/>
 `get_tile_level(142438865769)` returns a level of 1.  142438865769 is an Open Traffic Segment id.<br/> 
 ## Get the Latitude and Longitude from an ID
 `get_ll(73160266)` returns the bottom left corner of the level 2 tile.  (41.25, -73.75)<br/>

@@ -4,7 +4,7 @@ sidebar_position: 9
 
 # Unit tests
 
-Valhalla currently uses googletest for unit testing.
+Directions API currently uses googletest for unit testing.
 
 - The basics are covered in [googletest primer](https://github.com/google/googletest/blob/master/docs/primer.md)
 - More advanced topics  are covered [here](https://github.com/google/googletest/blob/master/docs/advanced.md)

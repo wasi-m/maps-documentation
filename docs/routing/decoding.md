@@ -3,13 +3,12 @@ sidebar_position: 5
 ---
 # Decode a route shape
 
-Valhalla routing, map-matching, and elevation services use an encoded polyline format to store a series of latitude, longitude coordinates as a single string. Polyline encoding greatly reduces the size of the route response or map-matching request, especially for longer routes or GPS traces. A description is found here: [polyline encoding](https://developers.google.com/maps/documentation/utilities/polylinealgorithm).
+Directions API routing services use an encoded polyline format to store a series of latitude, longitude coordinates as a single string. Polyline encoding greatly reduces the size of the route response or map-matching request, especially for longer routes or GPS traces. A description is found here: [polyline encoding](https://developers.google.com/maps/documentation/utilities/polylinealgorithm).
 
-**Note: Valhalla APIs use six digits of decimal precision.**
+**Note: Directions API APIs use six digits of decimal precision.**
 
 It is very important that you use six digits, rather than five as referenced in the Google algorithms documentation. With fewer than six digits, your locations are incorrectly placed (commonly, in the middle of an ocean), and you may receive errors with your API requests.
 
-Below are some sample algorithms to decode the string to create a list of latitude,longitude coordinates. Using this [demo tool](http://valhalla.github.io/demos/polyline/), you can also paste an encoded polyline string, decode it, and see the locations on a map (and save to GeoJSON). Use it to test and verify that your points are placed where you expected them.
 
 ## JavaScript
 
@@ -132,7 +131,7 @@ Here is an example of decoding in Python
 
 import sys
 
-#six degrees of precision in valhalla
+#six degrees of precision in Directions API
 inv = 1.0 / 1e6;
 
 #decode an encoded string
