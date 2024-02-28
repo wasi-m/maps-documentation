@@ -6,7 +6,7 @@ Getting started
 ======
 
 ```
-  Usage: main.js tileserver-gl [file] [options]
+  Usage: main.js tiles-api [file] [options]
 
   Options:
     --file <file>             MBTiles or PMTiles file
@@ -38,11 +38,11 @@ Reloading the configuration
 
 It is possible to reload the configuration file without restarting the whole process by sending a SIGHUP signal to the node process.
 
-- The `docker kill -s HUP tileserver-gl` command can be used when running the tileserver-gl docker container.
-- The `docker-compose kill -s HUP tileserver-gl-service-name` can be used when tileserver-gl is run as a docker-compose service.
+- The `docker kill -s HUP tiles-api` command can be used when running the tiles-api docker container.
+- The `docker-compose kill -s HUP tiles-api-service-name` can be used when tiles-api is run as a docker-compose service.
 
 Docker and `--port`
 ======
 
-When running tileserver-gl in a Docker container, using the `--port` option would make the container incorrectly seem unhealthy.
+When running tiles-api in a Docker container, using the `--port` option would make the container incorrectly seem unhealthy.
 Instead, it is advised to use Docker's port mapping and map the default port 8080 to the desired external port.

@@ -19,8 +19,6 @@ Rendered tiles
   * Available formats: ``png``, ``jpg`` (``jpeg``), ``webp``
   * TileJSON at ``/styles[/{tileSize}]/{id}.json``
 
-* The rendered tiles are not available in the ``tileserver-gl-light`` version.
-
 WMTS Capabilities
 ==============
 * WMTS Capabilities are served at ``/styles/{id}/wmts.xml``
@@ -87,7 +85,6 @@ Static images
 
 * You can also use (experimental) ``/styles/{id}/static/raw/...`` endpoints with raw spherical mercator coordinates (EPSG:3857) instead of WGS84.
 
-* The static images are not available in the ``tileserver-gl-light`` version.
 
 Source data
 ===========

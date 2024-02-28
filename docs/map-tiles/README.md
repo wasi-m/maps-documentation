@@ -11,7 +11,7 @@ When running docker image, no special installation is needed -- the docker will 
 
 Download test_data.zip from ``https://github.com/aplog1c/tiles-api/releases/tag/v1.0.0`` unzip the folder and just run ``docker run --rm -it -v $(pwd):/data -p 8080:8080 ghcr.io/aplog1c/tiles-api``.
 
-Additional options (see :doc:`/usage`) can be passed to the TileServer GL by appending them to the end of this command. You can, for example, do the following:
+Additional options (see :doc:`/usage`) can be passed to the Tiles-API by appending them to the end of this command. You can, for example, do the following:
 
 Download test zurich_switzerland.mbtiles from ``https://github.com/aplog1c/tiles-api/releases/tag/v1.0.0``
 

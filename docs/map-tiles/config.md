@@ -82,7 +82,7 @@ You can use this to optionally specify on what domains the rendered tiles are ac
 
 Path to the html (relative to ``root`` path) to use as a front page.
 
-Use ``true`` (or nothing) to serve the default TileServer GL front page with list of styles and data.
+Use ``true`` (or nothing) to serve the default Tiles-API front page with list of styles and data.
 Use ``false`` to disable the front page altogether (404).
 
 ``formatQuality``
@@ -231,7 +231,7 @@ MBTiles
 -------
 
 To specify that you want to use local mbtiles, use to following syntax: ``mbtiles://source1.mbtiles``.
-TileServer-GL will try to find the file ``source1.mbtiles`` in ``root`` + ``mbtiles`` path.
+Tiles-API will try to find the file ``source1.mbtiles`` in ``root`` + ``mbtiles`` path.
 
 For example::
 ```json
@@ -250,7 +250,7 @@ PMTiles
 -------
 
 To specify that you want to use local pmtiles, use to following syntax: ``pmtiles://source2.pmtiles``.
-TileServer-GL will try to find the file ``source2.pmtiles`` in ``root`` + ``pmtiles`` path.
+Tiles-API will try to find the file ``source2.pmtiles`` in ``root`` + ``pmtiles`` path.
 
 To specify that you want to use a url based pmtiles, use to following syntax: ``pmtiles://https://foo.lan/source3.pmtiles``.
 
@@ -298,4 +298,4 @@ It should contain the following placeholders:
 * ``{fontstack}`` -- name of the font and variant
 * ``{range}`` -- range of the glyphs
 
-For example ``"glyphs": "{fontstack}/{range}.pbf"`` will instruct TileServer-GL to look for the files such as ``fonts/Open Sans/0-255.pbf`` (``fonts`` come from the ``paths`` property of the ``config.json`` example above).
+For example ``"glyphs": "{fontstack}/{range}.pbf"`` will instruct Tiles-API to look for the files such as ``fonts/Open Sans/0-255.pbf`` (``fonts`` come from the ``paths`` property of the ``config.json`` example above).

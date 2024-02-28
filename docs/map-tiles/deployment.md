@@ -2,7 +2,7 @@
 Deployment
 ==========
 
-Typically, you should use nginx, lighttpd or apache on the frontend. The tileserver-gl server is hidden behind it in production deployment.
+Typically, you should use nginx, lighttpd or apache on the frontend. The tiles-api server is hidden behind it in production deployment.
 
 Caching
 =======
@@ -15,34 +15,34 @@ Cloudflare Cache Rules
 Cloudflare supports custom rules for configuring caching:
 https://developers.cloudflare.com/cache/about/cache-rules/
 
-tileserver-gl renders tiles in multiple formats - ``.png``, ``.jpg (jpeg)``, ``.webp`` for the raster endpoints, ``.pbf`` for vector endpoint. In addition, style information is generated with ``.json`` format.
+tiles-api renders tiles in multiple formats - ``.png``, ``.jpg (jpeg)``, ``.webp`` for the raster endpoints, ``.pbf`` for vector endpoint. In addition, style information is generated with ``.json`` format.
 
 Endpoint data can be configured to be cached by Cloudflare. For example to cache vector endpoint you will need to configure Cloudflare rules for the ``.pbf`` and ``.json`` data.
 
 Create a rule which matches ``hostname (equal)`` and ``URI Path (ends with)`` for ``.pbf`` and ``.json`` fields. Set cache status to eligible for cache to enable the caching and overwrite the ``Edge TTL`` with ``Browser TTL`` to be 7 days (depends on your application usage).
 
-This will ensure that your tiles are cached on the client side and by Cloudflare for seven days. If the tileserver is down or user has no internet access it will try to use cached tiles.
+This will ensure that your tiles are cached on the client side and by Cloudflare for seven days. If the tiles-api is down or user has no internet access it will try to use cached tiles.
 
 Note that ``Browser TTL`` will overwrite expiration dates on the client device. If you rebuild your maps, old tiles will be rendered until it expires or cache is cleared on the client device.
 
 Nginx Cache
 -----------
 
-If you have a reverse proxy setup in front of the tileserver you may want to enable caching as it will greatly offload requests from the application.
+If you have a reverse proxy setup in front of the tiles-api you may want to enable caching as it will greatly offload requests from the application.
 
 Configure the proxy cache path directive to initialize your cache store:
 
 ```
 
-  proxy_cache_path /var/cache/nginx/tileserver
-                   keys_zone=TileserverCache:50m
+  proxy_cache_path /var/cache/nginx/tiles-api
+                   keys_zone=TilesApiCache:50m
                    levels=1:2
                    inactive=2w
                    max_size=10g;
 
 ```
 
-Make sure to give proper permissions for the /var/cache/nginx/tileserver folder. Usually nginx is running with www-data user.
+Make sure to give proper permissions for the /var/cache/nginx/tiles-api folder. Usually nginx is running with www-data user.
 Enable caching on specific proxy pass:
 
 
@@ -51,7 +51,7 @@ Enable caching on specific proxy pass:
     include proxy_params; 
     proxy_pass http://127.0.0.1:8080/;
 
-    proxy_cache TileserverCache;
+    proxy_cache TileseApiCache;
     proxy_cache_valid 200 1w;
 
     # add_header X-Cache-Status $upstream_cache_status;
@@ -72,7 +72,7 @@ Nginx can be used to add protection via https, password, referrer, IP address re
 Running behind a proxy or a load-balancer
 =========================================
 
-If you need to run TileServer GL behind a proxy, make sure the proxy sends ``X-Forwarded-*`` headers to the server (most importantly ``X-Forwarded-Host`` and ``X-Forwarded-Proto``) to ensure the URLs generated inside TileJSON, etc. are using the desired domain and protocol.
+If you need to run Tiles-API behind a proxy, make sure the proxy sends ``X-Forwarded-*`` headers to the server (most importantly ``X-Forwarded-Host`` and ``X-Forwarded-Proto``) to ensure the URLs generated inside TileJSON, etc. are using the desired domain and protocol.
 
 Nginx Reverse Proxy
 -----------
@@ -80,8 +80,8 @@ Nginx Reverse Proxy
 An example nginx reverse proxy server configuration for HTTPS connections. It enables caching, CORS and Cloudflare Authenticated Pulls.
 
 ```
-  proxy_cache_path /var/cache/nginx/tileserver
-                   keys_zone=TileserverCache:50m 
+  proxy_cache_path /var/cache/nginx/tiles-api
+                   keys_zone=TilesApiCache:50m
                    levels=1:2
                    inactive=2w
                    max_size=1g;
@@ -117,7 +117,7 @@ An example nginx reverse proxy server configuration for HTTPS connections. It en
 
     location / {
       # This include directive sets up required headers for proxy and proxy cache.
-      # As well it includes the required ``X-Forwarded-*`` headers for tileserver to properly generate tiles.
+      # As well it includes the required ``X-Forwarded-*`` headers for tiles-api to properly generate tiles.
       include proxy_params;
 
       proxy_pass http://127.0.0.1:8080/;
@@ -126,7 +126,7 @@ An example nginx reverse proxy server configuration for HTTPS connections. It en
       proxy_hide_header Access-Control-Allow-Origin;
 
       # Enable proxy cache
-      proxy_cache TileserverCache;
+      proxy_cache TilesApiCache;
       proxy_cache_valid 200 1w;
 
       # Set our custom CORS
