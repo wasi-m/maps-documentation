@@ -9,7 +9,7 @@ const FeatureList = [
     URL: 'docs/map-tiles/',
     description: (
       <>
-        Vector and raster maps with GL styles. Server-side rendering by MapLibre GL Native.
+        Vector and raster maps with GL styles. Server-side rendering by Native Tiles api server.
         Map tile server for MapLibre GL JS, Android, iOS, Leaflet, OpenLayers, GIS via WMTS, etc.
       </>
     ),
