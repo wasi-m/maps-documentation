@@ -1,4 +1,8 @@
-# Mobility glossary
+---
+sidebar_position: 10
+---
+
+# Glossary
 
 * __break location__ - the start or end point of a route.
 * __cost__ - fixed costs in seconds that are added to both the path cost and the estimated time.

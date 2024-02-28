@@ -4,7 +4,7 @@ sidebar_position: 12
 
 # Common geocoding workflows
 
-Pelias provides several API endpoints, and each is best suited for a particular geocoding workflow. Match your use case to these common scenarios to determine which endpoint to use for tasks in your app.
+Places provides several API endpoints, and each is best suited for a particular geocoding workflow. Match your use case to these common scenarios to determine which endpoint to use for tasks in your app.
 
 ## You have a single address field that needs geographic coordinates (`/search`)
 
@@ -34,7 +34,7 @@ For coarse reverse, use the `/reverse` endpoint and `layers=coarse` or include a
 
 When you have live users who type things into input fields or search boxes, their activity falls into two scenarios, depending on when your app assumes they are ready to search.
 
-The distinction in the results is visible when you consider the behavior with the text of `lond`. [Autocomplete for `lond`, returns `london`](https://pelias.github.io/compare/#/v1/autocomplete%3Ftext=lond) because the user is still typing, but `/search` assumes the user is done entering text and [returns the city of `Lond` in Pakistan](https://pelias.github.io/compare/#/v1/search%3Ftext=lond).
+The distinction in the results is visible when you consider the behavior with the text of `lond`. [Autocomplete for `lond`, returns `london` `/v1/autocomplete%3Ftext=lond` because the user is still typing, but `/search` assumes the user is done entering text and returns the city of `Lond` in Pakistan `/v1/search%3Ftext=lond`.
 
 ### ...and want to show feedback as they type (`/autocomplete`)
 

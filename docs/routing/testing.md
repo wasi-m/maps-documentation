@@ -1,3 +1,7 @@
+---
+sidebar_position: 9
+---
+
 # Unit tests
 
 Valhalla currently uses googletest for unit testing.

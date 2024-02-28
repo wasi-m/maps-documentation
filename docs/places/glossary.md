@@ -2,7 +2,7 @@
 sidebar_position: 7
 ---
 
-# Pelias glossary
+# Places glossary
 
 ## Common search and geocoding terms
 
@@ -12,13 +12,13 @@ sidebar_position: 7
 - **administrative area** - a catch-all term for any area that might sub-divide the world, such as a city, neighbourhood, country, continent, etc. Usually, but not always, these correspond to various government administrations, hence administrative area.
 - **gazetteer** - a directory of geographical places, with a stable identifier and some number of descriptive properties about that location.
 
-## Pelias API and developer terms
+## Places API and developer terms
 
-- **API endpoint** - an architectural style for accessing web resources through a URL. In Pelias, available endpoints include `search`, `reverse`, and `autocomplete`. You can construct a URL to send queries and receive responses from Pelias.
+- **API endpoint** - an architectural style for accessing web resources through a URL. In Places, available endpoints include `search`, `reverse`, and `autocomplete`. You can construct a URL to send queries and receive responses from Places.
 - **autocomplete** - enables real-time feedback when entering text for a search, typically, where users start typing and a drop-down list appears where they can choose the term from the list below. Use the `autocomplete` endpoint to do this.
-- **data source** - the datasets available to Pelias. Only data sources that have open-source licenses are used.
+- **data source** - the datasets available to Places. Only data sources that have open-source licenses are used.
 - **focus** - option to make places closer to a particular location be prioritized and appear higher in the search results list. After all nearby results have been found, additional results will come from the rest of the world, without any further location-based prioritization.
-- **layer** - types of places available to Pelias and arranged in a hierarchy, such as an address, a venue, a neighbourhood, or a country.
+- **layer** - types of places available to Places and arranged in a hierarchy, such as an address, a venue, a neighbourhood, or a country.
 - **`place` search** - get details on a place if you know the data source, the type of place (such as a venue or address), and the identification number.
 - **structured geocoding** - Assigns geographical coordinates to an address, venue, or other location type that has been broken up into its constituent parts. Use the `search/structured` endpoint to do this.
 
@@ -26,5 +26,5 @@ sidebar_position: 7
 
 - **bounding box** - a rectangular area defined by two longitudes and two latitudes (the minimum and the maximum latitude, longitude).
 - **cross-origin resource sharing (CORS)** - standard allowing a web browser and server to accept requests across domains. Without CORS, browsers may not allow cross-site requests because they could be malicious.
-- **latitude** - the distance of a point north or south of the equator. In Pelias, latitudes are expressed in decimal degrees.
-- **longitude** - the distance of a point east or west. In Pelias, longitudes are in relation to the Prime Meridian and expressed in decimal degrees.
+- **latitude** - the distance of a point north or south of the equator. In Places, latitudes are expressed in decimal degrees.
+- **longitude** - the distance of a point east or west. In Places, longitudes are in relation to the Prime Meridian and expressed in decimal degrees.

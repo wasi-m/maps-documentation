@@ -1,3 +1,6 @@
+---
+sidebar_position: 5
+---
 # Decode a route shape
 
 Valhalla routing, map-matching, and elevation services use an encoded polyline format to store a series of latitude, longitude coordinates as a single string. Polyline encoding greatly reduces the size of the route response or map-matching request, especially for longer routes or GPS traces. A description is found here: [polyline encoding](https://developers.google.com/maps/documentation/utilities/polylinealgorithm).

@@ -1,3 +1,7 @@
+---
+sidebar_position: 7
+---
+
 # Speed values in Valhalla APIs
 
 To calculate speed and related factors when routing, such as travel times, Valhalla APIs consider speed limits in the OpenStreetMap source data, defaults for a particular category of road, or a measure of whether the road is in an urban or rural environment.

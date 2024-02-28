@@ -19,7 +19,7 @@ With reverse geocoding with Places, you can look up all sorts of information abo
 
 To get started with reverse geocoding, you need a latitude, longitude pair in decimal degrees specified with the parameters `point.lat` and `point.lon`, respectively.  For example, the Eiffel Tower in Paris, France, is located at `48.858268,2.294471`. The reverse geocode query for this would be:
 
->/v1/reverse?__point.lat=48.858268__&__point.lon=2.294471__
+> /v1/reverse?__point.lat=48.858268__&__point.lon=2.294471__
 
 The output is the standard GeoJSON format.
 
@@ -57,7 +57,7 @@ By default, reverse geocoding returns results from any [data source](data-source
 | [Who's on First](https://whosonfirst.org) | `whosonfirst` | `wof` |
 | [GeoNames](http://www.geonames.org/) | `geonames` | `gn` |
 
->/v1/reverse?point.lat=48.858268&point.lon=2.294471&___sources=osm___
+> /v1/reverse?point.lat=48.858268&point.lon=2.294471&___sources=osm___
 
 ### Filter by layers (data type)
 

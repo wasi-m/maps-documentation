@@ -1,3 +1,9 @@
+---
+sidebar_position: 2
+---
+
+# Build from Source
+
 We aim to make Valhalla installable on every half-modern hardware, platform and architecture. If the below instructions are not working for you, we'd be happy if you [file an issue or open a PR with a fix](https://github.com/valhalla/valhalla/blob/master/CONTRIBUTING.md).
 
 ### Build Configuration (all platforms)

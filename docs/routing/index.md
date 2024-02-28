@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Routing
 
 ## Valhalla open source routing
