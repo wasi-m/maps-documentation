@@ -1,6 +1,6 @@
 # Time-Distance Matrix service API reference
 
-Valhalla's time-distance matrix service provides a quick computation of time and distance between a set of locations and returns them to you in the resulting matrix table.
+Directions API's time-distance matrix service provides a quick computation of time and distance between a set of locations and returns them to you in the resulting matrix table.
 
 ## Matrix service
 
@@ -65,7 +65,7 @@ The Time-Distance Matrix service uses the `auto`, `bicycle`, `pedestrian` and `b
 
 ### Time-dependent matrices
 
-Most control can be achieved when setting a `date_time` string on each source or target. When setting the global `date_time` object as a shortcut instead, Valhalla will translate that to setting the `date_time.value` on all source locations when `date_time.type = 0/1` and on all target locations when `date_time.type = 2`.
+Most control can be achieved when setting a `date_time` string on each source or target. When setting the global `date_time` object as a shortcut instead, Directions API will translate that to setting the `date_time.value` on all source locations when `date_time.type = 0/1` and on all target locations when `date_time.type = 2`.
 
 However, there are important limitations of the `/sources_to_targets` service's time awareness. Due to algorithmic complexity, we disallow time-dependence for certain combinations of `date_time` on locations, if
 - `date_time.type = 0/1` or `date_time` on any source, when there's more sources than targets
@@ -90,8 +90,4 @@ These are the results of a request to the Time-Distance Matrix service.
 | `warnings` (optional) | This array may contain warning objects informing about deprecated request parameters, clamped values etc. | 
 
 See the [HTTP return codes](../turn-by-turn/api-reference.md#http-status-codes-and-conditions) for more on messages you might receive from the service.
-
-## Demonstration
-
-[View an interactive demo](http://valhalla.github.io/demos/matrix//).
 

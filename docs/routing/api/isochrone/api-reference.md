@@ -1,6 +1,6 @@
 # Isochrone & Isodistance service API reference
 
-An isochrone is a line that connects points of equal travel time about a given location, from the Greek roots of `iso` for equal and `chrone` for time. Valhalla's isochrone service computes areas that are reachable within specified time intervals from a location, and returns the reachable regions as contours of polygons or lines that you can display on a map.
+An isochrone is a line that connects points of equal travel time about a given location, from the Greek roots of `iso` for equal and `chrone` for time. Directions API's isochrone service computes areas that are reachable within specified time intervals from a location, and returns the reachable regions as contours of polygons or lines that you can display on a map.
 
 Isodistances follow the same concept, but instead of time one specifies distance intervals.
 
@@ -8,7 +8,7 @@ Isochrone maps share some of the same concepts and terminology with familiar top
 
 This is an example of 15, 30, 45 and 60 minute bicycle isochrones centered in Lancaster, PA.
 
-![Isochrones for travel times by walking in Lancaster, PA](../images/isochrone.png)
+![Isochrones for travel times by walking in Lancaster, PA](../img/isochrone.png)
 
 ## Inputs of the Isochrone service
 
@@ -35,7 +35,7 @@ Refer to the [route location documentation](../turn-by-turn/api-reference.md#loc
 
 ### Costing parameters
 
-The isochrone service uses the `auto`, `bicycle`, `pedestrian`, and `multimodal` and all other costing models available in the Valhalla Turn-by-Turn service. Refer to the [route costing models](../turn-by-turn/api-reference.md#costing-models) and [costing options](../turn-by-turn/api-reference.md#costing-options) documentation for more on how to specify this input.
+The isochrone service uses the `auto`, `bicycle`, `pedestrian`, and `multimodal` and all other costing models available in the Directions API Turn-by-Turn service. Refer to the [route costing models](../turn-by-turn/api-reference.md#costing-models) and [costing options](../turn-by-turn/api-reference.md#costing-options) documentation for more on how to specify this input.
 
 ### Other request parameters
 
@@ -62,21 +62,3 @@ See the [HTTP return codes](../turn-by-turn/api-reference.md#http-status-codes-a
 Most JavaScript-based GeoJSON renderers, including [Leaflet](http://leafletjs.com/), can use the isochrone styling information directly from the response. At present, you cannot control the opacity through the API.
 
 When making a map, drawing the isochrone contours as lines is more straightforward than polygons, and, therefore, currently is the default and recommended method. When deciding between the output as lines and polygons, consider your use case and the additional styling considerations involved with polygons. For example, fills should be rendered as semi-transparent over the other map layers so they are visible, although you may have more flexibility when using a vector-based map. In addition, polygons from multiple contour levels do not have overlapping areas cut out or removed. In other words, the outer contours include the areas of any inner contours, causing the colors and transparencies to blend when multiple contour polygons are drawn at the same time.
-
-## Future work on the isochrone service
-
-The Isochrone service is in active development. To report software issues or suggest enhancements, open an issue in the [Valhalla GitHub repository](https://github.com/valhalla/valhalla/issues).
-
-Several other options are being considered as future service enhancements. These include:
-
-* ~~Using distance rather than time for each unit.~~
-* ~~Generating outer contours or contours with interior holes for regions that cannot be accessed within the specified time.~~
-* ~~Options to control the minimum size of interior holes.~~
-* ~~Removing self intersections from polygonal contours.~~
-* ~~Allowing multiple locations to compute the region reachable from any of the locations within a specified time.~~
-* ~~Generating contours with reverse access logic to see the region that can reach a specific location within the specified time.~~
-* Returning raster data for potential animation using OpenGL shaders. This also has analysis use for being able to query thousands of locations to determine the time to each location, including improvements with one-to-many requests to the Valhalla Time-Distance Matrix service.
-
-## Data credits
-
-The image includes data from [OpenStreetMap](http://www.openstreetmap.org/).

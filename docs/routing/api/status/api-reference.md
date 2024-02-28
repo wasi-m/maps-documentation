@@ -10,7 +10,7 @@ If `"verbose": true` is passed as a parameter, the service will output the follo
 
 | Response key       | Type    | Description  |
 | :----------------- | :-----  | :----------- |
-| `version`          | string  | The current Valhalla version, e.g. `3.1.4`. |
+| `version`          | string  | The current Directions API version, e.g. `3.1.4`. |
 | `tileset_last_modified`      | integer | The time the tile_extract or tile_dir were last modified as UNIX timestamp, e.g. 1634903519. |
 | `has_tiles`        | bool    | Whether a valid tileset is currently loaded. |
 | `has_admins`       | bool    | Whether the current tileset was built using the admin database. |

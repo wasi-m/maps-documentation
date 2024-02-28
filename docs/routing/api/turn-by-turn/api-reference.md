@@ -1,8 +1,6 @@
-# Valhalla routing service API reference
+# Directions API routing service API reference
 
-Valhalla's routing service (a.k.a. turn-by-turn), is an open-source routing service that lets you integrate routing and navigation into a web or mobile application.
-
-[View an interactive demo](http://valhalla.github.io/demos/routing)
+Directions API's routing service (a.k.a. turn-by-turn), routing service that lets you integrate routing and navigation into a web or mobile application.
 
 The default logic for the OpenStreetMap tags, keys, and values used when routing are documented on an [OSM wiki page](http://wiki.openstreetmap.org/wiki/OSM_tags_for_routing/Valhalla).
 
@@ -22,8 +20,7 @@ There is an option to name your route request. You can do this by appending the 
 
 You specify locations as an ordered list of two or more locations within a JSON array. Locations are visited in the order specified.
 
-A location must include a latitude and longitude in decimal degrees. The coordinates can come from many input sources, such as a GPS location, a point or a click on a map, a geocoding service, and so on. Note that the Valhalla cannot search for names or addresses or perform geocoding or reverse geocoding. External search services, such as [Mapbox Geocoding](https://www.mapbox.com/api-documentation/#geocoding), can be used to find places and geocode addresses, which must be converted to coordinates for input.
-
+A location must include a latitude and longitude in decimal degrees. The coordinates can come from many input sources, such as a GPS location, a point or a click on a map, a geocoding service, and so on. Note that the Directions API cannot search for names or addresses or perform geocoding or reverse geocoding.
 To build a route, you need to specify two `break` locations. In addition, you can include `through`, `via` or `break_through` locations to influence the route path.
 
 | Location parameters | Description |
@@ -65,7 +62,7 @@ Future development work includes adding location options and information related
 
 ### Costing models
 
-Valhalla's routing service uses dynamic, run-time costing to generate the route path. The route request must include the name of the costing model and can include optional parameters available for the chosen costing model.
+Directions API's routing service uses dynamic, run-time costing to generate the route path. The route request must include the name of the costing model and can include optional parameters available for the chosen costing model.
 
 | Costing model | Description |
 | :----------------- | :----------- |
@@ -166,7 +163,7 @@ These additional options are available for bicycle costing methods.
 | `use_ferry` | This value indicates the willingness to take ferries. This is a range of values between 0 and 1. Values near 0 attempt to avoid ferries and values near 1 will favor ferries. Note that sometimes ferries are required to complete a route so values of 0 are not guaranteed to avoid ferries entirely. The default value is 0.5. |
 | `use_living_streets` | This value indicates the willingness to take living streets. This is a range of values between 0 and 1. Values near 0 attempt to avoid living streets and values from 0.5 to 1 will currently have no effect on route selection. The default value is 0.5. Note that sometimes living streets are required to complete a route so values of 0 are not guaranteed to avoid living streets entirely. |
 | `avoid_bad_surfaces` | This value is meant to represent how much a cyclist wants to avoid roads with poor surfaces relative to the bicycle type being used. This is a range of values between 0 and 1. When the value is 0, there is no penalization of roads with different surface types; only bicycle speed on each surface is taken into account. As the value approaches 1, roads with poor surfaces for the bike are penalized heavier so that they are only taken if they significantly improve travel time. When the value is equal to 1, all bad surfaces are completely disallowed from routing, including start and end points. The default value is 0.25. |
-|`bss_return_cost`| This value is useful when `bikeshare` is chosen as travel mode. It is meant to give the time will be used to return a rental bike. This value will be displayed in the final directions and used to calculate the whole duation. The default value is 120 seconds.|
+|`bss_return_cost`| This value is useful when `bikeshare` is chosen as travel mode. It is meant to give the time will be used to return a rental bike. This value will be displayed in the final directions and used to calculate the whole duration. The default value is 120 seconds.|
 |`bss_return_penalty`| This value is useful when `bikeshare` is chosen as travel mode. It is meant to describe the potential effort to return a rental bike. This value won't be displayed and used only inside of the algorithm.|
 | `shortest` | Changes the metric to quasi-shortest, i.e. purely distance-based costing. Note, this will disable all other costings & penalties. Also note, `shortest` will not disable hierarchy pruning, leading to potentially sub-optimal routes for some costing models. The default is `false`. |
 
@@ -270,7 +267,7 @@ Directions options should be specified at the top level of the JSON object.
 | `units` | Distance units for output. Allowable unit types are miles (or mi) and kilometers (or km). If no unit type is specified, the units default to kilometers. |
 | `language` | The language of the narration instructions based on the [IETF BCP 47](https://tools.ietf.org/html/bcp47) language tag string. If no language is specified or the specified language is unsupported, United States-based English (en-US) is used. [Currently supported language list](#supported-language-tags) |
 | `directions_type` |  An enum with 3 values. <ul><li>`none` indicating no maneuvers or instructions should be returned.</li><li>`maneuvers` indicating that only maneuvers be returned.</li><li>`instructions` indicating that maneuvers with instructions should be returned (this is the default if not specified).</li></ul> |
-| `format` | Four options are available: <ul><li>`json` is default valhalla routing directions JSON format</li><li>`gpx` returns the route as a GPX (GPS exchange format) XML track</li><li>`osrm` creates a OSRM compatible route directions JSON</li><li>`pbf` formats the result using protocol buffers</li></ul> |
+| `format` | Four options are available: <ul><li>`json` is default Directions API routing directions JSON format</li><li>`gpx` returns the route as a GPX (GPS exchange format) XML track</li><li>`osrm` creates a OSRM compatible route directions JSON</li><li>`pbf` formats the result using protocol buffers</li></ul> |
 | `banner_instructions` | If the format is `osrm`, this boolean indicates if each step should have the additional `bannerInstructions` attribute, which can be displayed in some navigation system SDKs. |
 | `voice_instructions` | If the format is `osrm`, this boolean indicates if each step should have the additional `voiceInstructions` attribute, which can be heard in some navigation system SDKs. |
 | `alternates` |  A number denoting how many alternate routes should be provided. There may be no alternates or less alternates than the user specifies. Alternates are not yet supported on multipoint routes (that is, routes with more than 2 locations). They are also not supported on time dependent routes. |
@@ -320,9 +317,9 @@ For example a bus request with the result in Spanish using the OSRM (Open Source
 | Options | Description |
 | :------------------ | :----------- |
 | `exclude_locations` |  A set of locations to exclude or avoid within a route can be specified using a JSON array of avoid_locations. The avoid_locations have the same format as the locations list. At a minimum each avoid location must include latitude and longitude. The avoid_locations are mapped to the closest road or roads and these roads are excluded from the route path computation.|
-| `exclude_polygons` |  One or multiple exterior rings of polygons in the form of nested JSON arrays, e.g. `[[[lon1, lat1], [lon2,lat2]],[[lon1,lat1],[lon2,lat2]]]`. Roads intersecting these rings will be avoided during path finding. If you only need to avoid a few specific roads, it's **much** more efficient to use `exclude_locations`. Valhalla will close open rings (i.e. copy the first coordinate to the last position).|
+| `exclude_polygons` |  One or multiple exterior rings of polygons in the form of nested JSON arrays, e.g. `[[[lon1, lat1], [lon2,lat2]],[[lon1,lat1],[lon2,lat2]]]`. Roads intersecting these rings will be avoided during path finding. If you only need to avoid a few specific roads, it's **much** more efficient to use `exclude_locations`. Directions API will close open rings (i.e. copy the first coordinate to the last position).|
 | `date_time` | This is the local date and time at the location.<ul><li>`type`</li><li>0 - Current departure time.</li><li>1 - Specified departure time</li><li>2 - Specified arrival time. Not yet implemented for multimodal costing method.</li><li>3 - Invariant specified time. Time does not vary over the course of the path. Not implemented for multimodal or bike share routing</li><li>`value` - the date and time is specified in ISO 8601 format (YYYY-MM-DDThh:mm) in the local time zone of departure or arrival.  For example "2016-07-03T08:06"</li></ul><br></br> |
-| `elevation_interval` | Elevation interval (meters) for requesting elevation along the route. Valhalla data must have been generated with elevation data. If no `elevation_interval` is specified, no elevation will be returned for the route. An elevation interval of 30 meters is recommended when elevation along the route is desired, matching the default data source's resolution. |
+| `elevation_interval` | Elevation interval (meters) for requesting elevation along the route. Directions API data must have been generated with elevation data. If no `elevation_interval` is specified, no elevation will be returned for the route. An elevation interval of 30 meters is recommended when elevation along the route is desired, matching the default data source's resolution. |
 | `id` | Name your route request. If `id` is specified, the naming will be sent thru to the response. |
 | `linear_references` | When present and `true`, the successful `route` response will include a key `linear_references`. Its value is an array of base64-encoded [OpenLR location references][openlr], one for each graph edge of the road network matched by the input trace. |
 | `prioritize_bidirectional` | Prioritize `bidirectional a*` when `date_time.type = depart_at/current`. By default `time_dependent_forward a*` is used in these cases, but `bidirectional a*` is much faster. Currently it does not update the time (and speeds) when searching for the route path, but the ETA on that route is recalculated based on the time-dependent speeds |
@@ -523,9 +520,9 @@ The following is a table of HTTP status error code conditions that may occur for
 
 ### Internal error codes and conditions
 
-The following is a table of exception internal error code conditions that may occur for a particular request. An [error code utility header file](https://raw.githubusercontent.com/valhalla/baldr/master/valhalla/baldr/errorcode_util.h) can be included by any of the Valhalla service projects.
+The following is a table of exception internal error code conditions that may occur for a particular request.
 
-The codes correspond to code returned from a particular [Valhalla project](https://github.com/valhalla/valhalla).
+The codes correspond to code returned from a particular [Directions API project](https://github.com/aplog1c/directions-api).
 
 | Error code | Error |
 | :--------- | :---------- |

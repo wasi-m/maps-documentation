@@ -6,7 +6,7 @@ sidebar_position: 4
 This document provides a brief overview of Directions API route computation.
 
 
-![](images/route_diagram.png)
+![](./img/route_diagram.png)
 
 ## Request Parsing
   Parse incoming request (JSON) to validate inputs. Converts (most) of the incoming request to protocol buffer objects to pass through the individual stages. The exception is currently some costing options for which parsing is deferred until needed within the costing module itself.
@@ -20,14 +20,14 @@ This document provides a brief overview of Directions API route computation.
   - *MultiModal* - This is a forward direction A\* algorithm with transit schedule lookup included as well as logic to switch modes between pedestrian and transit. This algorithm is time-dependent due to the nature of transit schedules.
 
 
-  All of Directions API’s path algorithms use dynamic, run-time costing. Costing logic is held within the *sif* directory. A base class (*DynamicCost*) defines the interface that each costing model implements.  A brief overview of the costing design is located [here](sif/dynamic-costing.md). 
+  All of Directions API’s path algorithms use dynamic, run-time costing. Costing logic is held within the *sif* directory. A base class (*DynamicCost*) defines the interface that each costing model implements.
 
 **Forming the Trip Path**
 [TripPathBuilder](https://github.com/aplog1c/directions-api/blob/master/src/thor/triplegbuilder.cc) creates the Trip Path for Directions API.  Code for this step is within the thor directory. This Trip path is a sequence of nodes and edges that will form a path.  The path is created in a forward direction from `Node 0` to `Node 1` to...`Node N`.  Edge and node attributes are added to the path which will then be passed to Odin to create Trip Directions.  Moreover, TripPathBuilder will add intersecting edge attributes at each node within the path to assist Odin with maneuver generation. 
 
 Looking at the figure below, our path is from `Node 1` to `Node 2` to `Node 3` to...`Node N`.  The path (a, f, l) is highlighted in red.  Each arrow represents a directed edge (DE) from Node to Node. Looking at our path, when we are at `Node 2` we will store the edge information for `DE a/b` and the attributes(e.g., surface, speed, access, transit information, and etc.) for `DE a`.  Also, we will store the intersecting edge info for `c/d`, `e/f`, and `g/h`. 
 
-![](images/trip_path_builder.jpg)
+![](./img/trip_path_builder.jpg)
 
 
 **Generating Guidance**
@@ -37,7 +37,7 @@ The route narrative/guidance generating code is located in the *odin* directory.
   - *Odin* collapses the initial maneuver list to form a concise list of maneuvers
   - *Odin* adds text and verbal instructions to form trip directions
   - *Odin* supports these [languages](api/turn-by-turn/api-reference.md#supported-language-tags) for narration instructions
-![](images/GeneratingGuidanceProcess.png)
+![](./img/GeneratingGuidanceProcess.png)
 
 
 
